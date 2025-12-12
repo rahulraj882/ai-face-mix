@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiverse Face Merge</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@300;500;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Background Layers -->
+    <div class="cosmos-bg"></div>
+    <div class="nebula-layer"></div>
+    <div class="stars-layer"></div>
+    <div class="grid-overlay"></div>
+
+    <!-- PHASE 1: INTRO SCREEN -->
+    <section id="intro-screen" class="screen active">
+        <div class="portal-container intro-portal">
+            <div class="portal-ring outer"></div>
+            <div class="portal-ring inner"></div>
+            <div class="portal-core"></div>
+        </div>
+        <div class="title-container">
+            <h1 class="main-title glitch-text" data-text="MULTIVERSE">MULTIVERSE</h1>
+            <h2 class="sub-title glitch-text" data-text="FACE FUSION">FACE FUSION</h2>
+        </div>
+        <button id="start-btn" class="cosmic-btn">INITIALIZE CONNECTION</button>
+        <div class="floating-shards"></div>
+    </section>
+
+    <!-- PHASE 2: SELECTION SCREEN (Full Mosaic) -->
+    <section id="selection-screen" class="screen hidden">
+        <div class="mosaic-grid" id="mosaic-grid">
+            <!-- Populated by JS -->
+        </div>
+        <div class="scan-overlay">
+            <h2 class="scan-text warp-text">SCANNING ACROSS INFINITE REALITIES...</h2>
+            <div class="scan-line"></div>
+        </div>
+    </section>
+
+    <!-- PHASE 3: MERGE SCREEN (Sphere Display) -->
+    <section id="merge-screen" class="screen hidden">
+        <div class="sphere-container">
+            <div class="energy-sphere">
+                <canvas id="merge-canvas" width="400" height="400"></canvas>
+                <div class="sphere-glint"></div>
+                <div class="sphere-rings"></div>
+            </div>
+
+            <!-- Hidden container for the split animation assets -->
+            <div id="split-container" class="split-wrapper hidden">
+                <div class="split-half left" id="split-left"></div>
+                <div class="split-half right" id="split-right"></div>
+                <div class="crack-overlay"></div>
+            </div>
+        </div>
+
+        <div class="button-container">
+            <button id="split-btn" class="pulse-btn">
+                <span class="btn-glow"></span>
+                SPLIT THE IDENTITIES
+            </button>
+        </div>
+    </section>
+
+    <!-- PHASE 4: REVEAL SCREEN -->
+    <section id="reveal-screen" class="screen hidden">
+        <div class="reveal-content">
+            <!-- Left: Origin A -->
+            <div class="reveal-card side-card">
+                <div class="portal-halo"></div>
+                <img id="reveal-img-a" src="assets/img012.jpg" alt="Origin A">
+                <div class="name-plate">
+                    <span class="origin-label">UNIVERSE A-113</span>
+                    <span id="reveal-name-a" class="hero-name">UNKNOWN</span>
+                </div>
+            </div>
+
+            <!-- Middle: Merged Result -->
+            <div class="reveal-card center-card">
+                <div class="portal-halo highlight-halo"></div>
+                <img id="reveal-img-merged" src="assets/preview-merged.jpg" alt="Merged Reality">
+                <div class="name-plate">
+                    <span class="origin-label">NEW REALITY</span>
+                    <span class="hero-name">FUSION COMPLETE</span>
+                </div>
+            </div>
+
+            <!-- Right: Origin B -->
+            <div class="reveal-card side-card">
+                <div class="portal-halo"></div>
+                <img id="reveal-img-b" src="assets/img088.jpg" alt="Origin B">
+                <div class="name-plate">
+                    <span class="origin-label">UNIVERSE B-616</span>
+                    <span id="reveal-name-b" class="hero-name">UNKNOWN</span>
+                </div>
+            </div>
+        </div>
+
+        <button id="reset-btn" class="cosmic-btn small">FUSE ANOTHER REALITY</button>
+    </section>
+
+    <!-- Global Effects -->
+    <div id="storm-overlay" class="storm-fx hidden">
+        <div class="lightning-flash"></div>
+        <div class="white-out"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
