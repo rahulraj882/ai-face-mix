@@ -377,6 +377,8 @@ body {
 }
 
 .sphere-glint {
+    display: none;
+    /* 
     position: absolute;
     top: 10%;
     left: 15%;
@@ -385,6 +387,7 @@ body {
     background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.4) 0%, transparent 70%);
     transform: rotate(-45deg);
     pointer-events: none;
+    */
 }
 
 .sphere-rings {
@@ -584,7 +587,7 @@ body {
 
 .origin-label {
     display: block;
-    font-size: 0.8rem;
+    font-size: 2rem;
     color: var(--neon-purple);
     letter-spacing: 2px;
 }
@@ -887,7 +890,7 @@ body {
 }
 
 .clue-label {
-    font-size: 4rem;
+    font-size: 6rem;
     color: var(--neon-purple);
     letter-spacing: 5px;
     margin-bottom: 2rem;
