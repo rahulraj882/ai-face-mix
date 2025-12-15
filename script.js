@@ -324,6 +324,21 @@ async function startSelectionPhase() {
 // --- PHASE 2 -> 3: MERGE (SPHERE) ---
 // --- PHASE 2 -> 3: MERGE (SPHERE) ---
 async function startMergePhase(roundData) {
+    const clueText = document.getElementById('clue-text');
+    const clueContainer = document.getElementById('clue-overlay');
+    const sphereWrapper = document.getElementById('sphere-wrapper');
+    const mergeControls = document.getElementById('merge-controls');
+
+    // 1. Prepare UI State BEFORE switching screen (Hide Sphere/Controls, Show Clue)
+    if (clueContainer && sphereWrapper && mergeControls) {
+        clueContainer.classList.remove('hidden');
+        sphereWrapper.classList.add('faded-out'); // Hide immediately
+        mergeControls.classList.add('faded-out'); // Hide immediately
+    }
+
+    // 2. Clear output canvas to ensure no old image persists
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
     switchScreen('merge');
 
     // Load and Merge
@@ -331,61 +346,48 @@ async function startMergePhase(roundData) {
         // Fallback if no specific data
         const mergedSrc = roundData ? roundData["split the indenties image"] : 'assets/preview-merged.jpeg';
 
-        // Update Clue Text
-        const clueText = document.getElementById('clue-text');
-        const clueContainer = document.getElementById('clue-overlay');
-        const sphereWrapper = document.getElementById('sphere-wrapper');
-        const mergeControls = document.getElementById('merge-controls');
-
         if (clueText) {
             const lText = (roundData && roundData["left text"]) ? roundData["left text"] : "HR";
             const rText = (roundData && roundData["right text"]) ? roundData["right text"] : "AI";
             clueText.textContent = `${lText} X ${rText}`;
         }
 
-        // Transition Logic: Show Clue -> Wait 5s -> Show Sphere
-        if (clueContainer && sphereWrapper && mergeControls) {
-            // Initial State: Show Clue, Hide Sphere
-            clueContainer.classList.remove('hidden');
-            sphereWrapper.classList.add('faded-out');
-            mergeControls.classList.add('faded-out');
+        // 3. Wait for BOTH 5 seconds (Clue Drama) AND Image Load
+        const [previewImg] = await Promise.all([
+            new Promise((resolve) => {
+                const img = new Image();
+                img.src = mergedSrc;
+                img.onload = () => resolve(img);
+                img.onerror = () => resolve(img); // Proceed even if fail
+            }),
+            sleep(5000)
+        ]);
 
-            // Wait 5 seconds
-            await sleep(5000);
-
-            // Swap
-            clueContainer.classList.add('hidden');
-            sphereWrapper.classList.remove('faded-out');
-            mergeControls.classList.remove('faded-out');
-        }
-
-        const previewImg = new Image();
-        previewImg.src = mergedSrc;
-        await new Promise((r, e) => {
-            previewImg.onload = r;
-            previewImg.onerror = r; // Proceed anyway
-        });
-
-        // Draw merged result with full visibility (no crop)
-        // 1. Calculate natural aspect ratio
+        // 4. Draw merged result with full visibility (no crop)
+        // Calculate natural aspect ratio
         const ratio = previewImg.width / (previewImg.height || 1); // Avoid div by zero
 
-        // 2. Set canvas dimensions to match this ratio
-        // We keep height fixed at 600 (or higher for resolution) and adjust width
+        // Set canvas dimensions to match this ratio
         const baseHeight = 600;
         canvas.height = baseHeight;
         canvas.width = baseHeight * ratio;
 
-        // 3. Update CSS container to match this ratio so it doesn't stretch/distort
-        // We wait a tick to ensure DOM is ready if needed, but synchronous is fine usually
+        // Update CSS container
         const sphere = document.querySelector('.energy-sphere');
         if (sphere) {
             sphere.style.aspectRatio = `${ratio}`;
         }
 
-        // 4. Draw FULL image
+        // Draw FULL image
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.drawImage(previewImg, 0, 0, canvas.width, canvas.height);
+
+        // 5. Reveal Sphere and Controls
+        if (clueContainer && sphereWrapper && mergeControls) {
+            clueContainer.classList.add('hidden');
+            sphereWrapper.classList.remove('faded-out');
+            mergeControls.classList.remove('faded-out');
+        }
 
         // Prepare Split Animation Assets (Legacy visual backup)
         const dataUrl = canvas.toDataURL();
@@ -393,12 +395,6 @@ async function startMergePhase(roundData) {
         splitRight.style.backgroundImage = `url(${dataUrl})`;
 
         // Setup Reveal Data
-        // Map JSON keys to UI:
-        // "split the indenties image" -> Center
-        // "qleft image" -> Left
-        // "right image" -> Right
-        // "text" -> Name
-
         document.getElementById('reveal-img-merged').src = mergedSrc;
 
         if (roundData) {
@@ -427,6 +423,8 @@ async function startMergePhase(roundData) {
         console.error("Merge failed", e);
     }
 }
+
+
 
 // --- PHASE 3 -> 4: STORM SPLIT ---
 // --- PHASE 3 -> 4: STORM SPLIT (Now Infusion) ---
