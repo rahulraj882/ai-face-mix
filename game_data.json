@@ -5,8 +5,8 @@
         "right image": "assets/Tarun_Kalra.jpeg",
         "left text": "Enterprise",
         "right text": "Business Cloud",
-        "qleft image name": "Sudhir_Mittal Sir",
-        "right image name": "Tarun_Kalra Sir"
+        "qleft image name": "Sudhir Mittal Sir",
+        "right image name": "Tarun Kalra Sir"
     },
     {
         "split the indenties image": "assets/Result/Akhand_Rahul.png",
@@ -14,8 +14,8 @@
         "right image": "assets/Rahul_Mukherjee.jpeg",
         "left text": "HR",
         "right text": "HR",
-        "qleft image name": "Akhand_Kumar Sir",
-        "right image name": "Rahul_Mukherjee Sir"
+        "qleft image name": "Akhand Kumar Sir",
+        "right image name": "Rahul Mukherjee Sir"
     },
     {
         "split the indenties image": "assets/Result/Gaurav_Mohsin.png",
@@ -23,26 +23,8 @@
         "right image": "assets/Mohsin_Abbas.png",
         "left text": "Enterprise",
         "right text": "Product & Engineering",
-        "qleft image name": "Gaurav_Duggal Sir",
-        "right image name": "Mohsin_Abbas Sir"
-    },
-    {
-        "split the indenties image": "assets/Result/Kiran_Anish.png",
-        "qleft image": "assets/Kiran_Thomas.png",
-        "right image": "assets/Anish_Shah.jpeg",
-        "left text": "COO",
-        "right text": "CEO",
-        "qleft image name": "Kiran_Thomas Sir",
-        "right image name": "Anish_Shah Sir"
-    },
-    {
-        "split the indenties image": "assets/Result/Nilesh_Sameer.png",
-        "qleft image": "assets/Nilesh_Mahajan.jpeg",
-        "right image": "assets/Sameer_Mehta.jpeg",
-        "left text": "BOND strategic Projects",
-        "right text": "Enterprise",
-        "qleft image name": "Nilesh_Mahajan Sir",
-        "right image name": "Sameer_Mehta Sir"
+        "qleft image name": "Gaurav Duggal Sir",
+        "right image name": "Mohsin Abbas Sir"
     },
     {
         "split the indenties image": "assets/Result/Raghuram_Deepak.png",
@@ -50,8 +32,8 @@
         "right image": "assets/Deepak_Kamale.jpeg",
         "left text": "Data Platforms",
         "right text": "Assets",
-        "qleft image name": "Raghuram_Velega Sir",
-        "right image name": "Deepak_Kamale Sir"
+        "qleft image name": "Raghuram Velega Sir",
+        "right image name": "Deepak Kamale Sir"
     },
     {
         "split the indenties image": "assets/Result/Shailesh_Gaurav.png",
@@ -59,8 +41,8 @@
         "right image": "assets/Gaurav_Aggarwal.png",
         "left text": "DDC Studio",
         "right text": "AI Platforms",
-        "qleft image name": "Shailesh_Naik Sir",
-        "right image name": "Gaurav_Aggarwal Sir"
+        "qleft image name": "Shailesh Naik Sir",
+        "right image name": "Gaurav Aggarwal Sir"
     },
     {
         "split the indenties image": "assets/Result/Brijesh_BP.jpeg",
@@ -68,7 +50,25 @@
         "right image": "assets/BP_Singh.jpeg",
         "left text": "Info Security",
         "right text": "Tech Ops",
-        "qleft image name": "Brijesh_Datta Sir",
-        "right image name": "BP_Singh Sir"
+        "qleft image name": "Brijesh Datta Sir",
+        "right image name": "BP Singh Sir"
+    },
+    {
+        "split the indenties image": "assets/Result/Nilesh_Sameer.png",
+        "qleft image": "assets/Nilesh_Mahajan.jpeg",
+        "right image": "assets/Sameer_Mehta.jpeg",
+        "left text": "BOND",
+        "right text": "Enterprise",
+        "qleft image name": "Nilesh Mahajan Sir",
+        "right image name": "Sameer Mehta Sir"
+    },
+    {
+        "split the indenties image": "assets/Result/Kiran_Anish.png",
+        "qleft image": "assets/Kiran_Thomas.png",
+        "right image": "assets/Anish_Shah.jpeg",
+        "left text": "?",
+        "right text": "?",
+        "qleft image name": "Kiran Thomas Sir",
+        "right image name": "Anish Shah Sir"
     }
 ]
