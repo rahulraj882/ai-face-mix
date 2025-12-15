@@ -220,7 +220,7 @@ body {
 
 @keyframes floatShard {
     0% {
-        transform: translateY(110vh) rotate(0deg);
+        transform: translateY(70vh) rotate(0deg);
         opacity: 0;
     }
 
@@ -233,7 +233,7 @@ body {
     }
 
     100% {
-        transform: translateY(-10vh) rotate(360deg);
+        transform: translateY(30vh) rotate(360deg);
         opacity: 0;
     }
 }
@@ -246,7 +246,7 @@ body {
 
 .mosaic-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     width: 100vw;
     height: 100vh;
     gap: 0;
@@ -495,7 +495,6 @@ body {
     /* Grow to fill space */
     min-width: 250px;
     max-width: 400px;
-    /* Cap the size so they aren't ridiculous */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -505,14 +504,33 @@ body {
 }
 
 .reveal-card.side-card {
-    transform: scale(0.9);
-    /* Slightly smaller than center */
+    flex: 0.8;
+    /* Take less space */
+    max-width: 300px;
+    margin-top: 2rem;
+    /* Visually lower or simply smaller */
 }
 
 .reveal-card.center-card {
+    flex: 1.2;
+    /* Take more space */
     max-width: 450px;
-    /* Center one can be slightly bigger */
     z-index: 10;
+    transform: scale(1.1) translateY(50px);
+    /* Make it pop */
+    animation: floatUp 1s forwards ease-out;
+    /* Re-apply animation override if needed, but transform might conflict */
+}
+
+/* Ensure animation doesn't fight the scale. 
+   Actually floatUp animates translate.
+   Let's bake the scale into the animation or just rely on flex size/width.
+*/
+.reveal-card.center-card {
+    flex: 1.2;
+    max-width: 450px;
+    z-index: 10;
+    /* No scale transform here to avoid conflict with animation, rely on width */
 }
 
 /* Staggered Animation */
@@ -549,6 +567,9 @@ body {
 
 .reveal-card img {
     width: 100%;
+    aspect-ratio: 1 / 1.1;
+    /* Consistent portrait-ish ratio */
+    object-fit: cover;
     border: 3px solid var(--neon-cyan);
     box-shadow: 0 0 20px rgba(0, 243, 255, 0.3);
 }
@@ -828,4 +849,74 @@ body {
     100% {
         clip: rect(100px, 9999px, 32px, 0);
     }
+}
+
+/* --- INFUSION ANIMATION --- */
+.infusing {
+    animation: infusionAnim 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes infusionAnim {
+    0% {
+        transform: scale(1);
+        filter: brightness(1) hue-rotate(0deg);
+    }
+
+    40% {
+        transform: scale(1.05);
+        filter: brightness(2) hue-rotate(45deg) blur(2px);
+    }
+
+    100% {
+        transform: scale(0.1);
+        opacity: 0;
+        filter: brightness(5) hue-rotate(180deg) blur(20px);
+    }
+}
+
+/* --- CLUE TRANSITION --- */
+.clue-container {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 50;
+    transition: opacity 0.5s;
+}
+
+.clue-label {
+    font-size: 4rem;
+    color: var(--neon-purple);
+    letter-spacing: 5px;
+    margin-bottom: 2rem;
+    opacity: 0.8;
+}
+
+.clue-text {
+    /* font-family: var(--font-head);  Removed special font if requested, but usually keep for consistency. 
+       User said "without any animation". The glitch-text class in HTML handles animation. 
+       I will ensure this CSS doesn't add extra movement. */
+    font-family: var(--font-head);
+    font-size: 6rem;
+    color: #fff;
+    text-shadow: 0 0 20px var(--neon-cyan);
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.sphere-container.faded-out,
+.button-container.faded-out {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s;
+}
+
+.button-container {
+    display: flex;
+    /* Keep this general style */
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
 }

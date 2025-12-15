@@ -48,7 +48,12 @@
 
     <!-- PHASE 3: MERGE SCREEN (Sphere Display) -->
     <section id="merge-screen" class="screen hidden">
-        <div class="sphere-container">
+        <div id="clue-overlay" class="clue-container">
+            <h3 class="clue-label">CLUE</h3>
+            <h1 id="clue-text" class="clue-text"></h1>
+        </div>
+
+        <div class="sphere-container" id="sphere-wrapper">
             <div class="energy-sphere">
                 <canvas id="merge-canvas" width="400" height="400"></canvas>
                 <div class="sphere-glint"></div>
@@ -63,7 +68,7 @@
             </div>
         </div>
 
-        <div class="button-container">
+        <div class="button-container" id="merge-controls">
             <button id="split-btn" class="pulse-btn">
                 <span class="btn-glow"></span>
                 SPLIT THE IDENTITIES

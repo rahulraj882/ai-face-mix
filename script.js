@@ -1,9 +1,24 @@
-const TOTAL_IMAGES = 5;
+// const TOTAL_IMAGES = 5; // Removed in favor of explicit list
 const ASSET_PATH = 'assets/';
+
+// List of actual files present in assets folder
+const AVAILABLE_IMAGES = [
+    'gaurav.jpeg',
+    'img001.jpeg',
+    'img002.jpg',
+    'preview-merged.jpeg',
+    'shailesh+gaurav.jpeg',
+    'shailesh.jpeg',
+    'sudheer+tarun.jpeg',
+    'sudheer.jpeg',
+    'tarun.jpeg'
+];
 
 // --- STATE ---
 let currentA = null;
 let currentB = null;
+let gameData = [];
+let currentRoundIndex = 0;
 
 // --- DOM ELEMENTS ---
 const screens = {
@@ -33,20 +48,36 @@ const revealNameB = document.getElementById('reveal-name-b');
 // --- HELPERS ---
 const pad = (num) => String(num).padStart(3, '0');
 const sleep = (ms) => new Promise(r => setTimeout(r, ms));
-const getRandomId = () => Math.floor(Math.random() * TOTAL_IMAGES) + 1;
+// const getRandomId = () => Math.floor(Math.random() * TOTAL_IMAGES) + 1;
+const getRandomImage = () => AVAILABLE_IMAGES[Math.floor(Math.random() * AVAILABLE_IMAGES.length)];
 
 // --- INITIALIZATION ---
-function init() {
+async function init() {
     createFloatingShards();
     document.getElementById('start-btn').addEventListener('click', startSelectionPhase);
     splitBtn.addEventListener('click', triggerStormSplit);
     resetBtn.addEventListener('click', resetGame);
+
+    // Load Game Data
+    try {
+        const response = await fetch('game_data.json');
+        gameData = await response.json();
+        console.log("Game Data Loaded:", gameData);
+    } catch (e) {
+        console.error("Failed to load game data:", e);
+    }
 }
 
 function resetGame() {
     // Reset Split/Merge State
     splitBtn.classList.remove('hidden');
     canvas.style.opacity = 1;
+
+    // Ensure infusion class is gone
+    const sphere = document.querySelector('.energy-sphere');
+    if (sphere) sphere.classList.remove('infusing');
+
+    // Hide split container (legacy, but good to keep clean)
     splitContainer.classList.add('hidden');
     splitContainer.style.opacity = 1;
     splitContainer.style.transition = 'none';
@@ -55,6 +86,13 @@ function resetGame() {
 
     // Clear any active screens to be safe
     Object.values(screens).forEach(s => s.classList.remove('active'));
+
+    // Advance Round (Sequential)
+    if (gameData.length > 1) {
+        currentRoundIndex = (currentRoundIndex + 1) % gameData.length;
+    } else {
+        currentRoundIndex = 0;
+    }
 
     // Start Selection
     startSelectionPhase();
@@ -71,7 +109,7 @@ function createFloatingShards() {
         shard.style.height = shard.style.width;
 
         const img = document.createElement('img');
-        img.src = `${ASSET_PATH}img${pad(getRandomId())}.jpg`;
+        img.src = `${ASSET_PATH}${getRandomImage()}`;
         shard.appendChild(img);
         container.appendChild(shard);
     }
@@ -86,11 +124,11 @@ async function startSelectionPhase() {
     mosaicGrid.innerHTML = '';
     const items = [];
     for (let i = 0; i < 150; i++) {
-        const id = (i % TOTAL_IMAGES) + 1;
+        // const id = (i % TOTAL_IMAGES) + 1; // Removed
         const div = document.createElement('div');
         div.className = 'mosaic-item'; // CSS handles size
         const img = document.createElement('img');
-        img.src = `${ASSET_PATH}img${pad(id)}.jpg`;
+        img.src = `${ASSET_PATH}${getRandomImage()}`;
         img.className = 'mosaic-item';
         div.appendChild(img);
         mosaicGrid.appendChild(div);
@@ -106,38 +144,68 @@ async function startSelectionPhase() {
         setTimeout(() => item.classList.remove('phasing'), 300);
     }, 100);
 
-    // 3. Select Targets
-    let a = getRandomId();
-    let b = getRandomId();
-    while (a === b) b = getRandomId();
-    currentA = a;
-    currentB = b;
+    // 3. Select Targets based on JSON
+    // If no data, fallback to random (safety)
+    let roundData = null;
+    if (gameData && gameData.length > 0) {
+        roundData = gameData[currentRoundIndex];
+    }
 
     // Wait for "Scanning" drama (3 seconds)
     await sleep(4000);
     clearInterval(phasingInterval);
 
-    startMergePhase(a, b);
+    startMergePhase(roundData);
 }
 
 // --- PHASE 2 -> 3: MERGE (SPHERE) ---
-async function startMergePhase(idA, idB) {
+// --- PHASE 2 -> 3: MERGE (SPHERE) ---
+async function startMergePhase(roundData) {
     switchScreen('merge');
 
     // Load and Merge
     try {
-        // Load the fixed preview image instead of random merge
-        // const mergedImg = await loadImage('preview-merged');
+        // Fallback if no specific data
+        const mergedSrc = roundData ? roundData["split the indenties image"] : 'assets/preview-merged.jpg';
 
-        // Actually, just load it directly. 
-        // We override the canvas logic to show this specific image
+        // Update Clue Text
+        const clueText = document.getElementById('clue-text');
+        const clueContainer = document.getElementById('clue-overlay');
+        const sphereWrapper = document.getElementById('sphere-wrapper');
+        const mergeControls = document.getElementById('merge-controls');
+
+        if (clueText) {
+            const lText = (roundData && roundData["left text"]) ? roundData["left text"] : "HR";
+            const rText = (roundData && roundData["right text"]) ? roundData["right text"] : "AI";
+            clueText.textContent = `${lText} X ${rText}`;
+        }
+
+        // Transition Logic: Show Clue -> Wait 5s -> Show Sphere
+        if (clueContainer && sphereWrapper && mergeControls) {
+            // Initial State: Show Clue, Hide Sphere
+            clueContainer.classList.remove('hidden');
+            sphereWrapper.classList.add('faded-out');
+            mergeControls.classList.add('faded-out');
+
+            // Wait 5 seconds
+            await sleep(5000);
+
+            // Swap
+            clueContainer.classList.add('hidden');
+            sphereWrapper.classList.remove('faded-out');
+            mergeControls.classList.remove('faded-out');
+        }
+
         const previewImg = new Image();
-        previewImg.src = 'assets/preview-merged.jpg';
-        await new Promise(r => previewImg.onload = r);
+        previewImg.src = mergedSrc;
+        await new Promise((r, e) => {
+            previewImg.onload = r;
+            previewImg.onerror = r; // Proceed anyway
+        });
 
         // Draw merged result with full visibility (no crop)
         // 1. Calculate natural aspect ratio
-        const ratio = previewImg.width / previewImg.height;
+        const ratio = previewImg.width / (previewImg.height || 1); // Avoid div by zero
 
         // 2. Set canvas dimensions to match this ratio
         // We keep height fixed at 600 (or higher for resolution) and adjust width
@@ -156,18 +224,36 @@ async function startMergePhase(idA, idB) {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.drawImage(previewImg, 0, 0, canvas.width, canvas.height);
 
-        // Prepare Split Animation Assets
+        // Prepare Split Animation Assets (Legacy visual backup)
         const dataUrl = canvas.toDataURL();
         splitLeft.style.backgroundImage = `url(${dataUrl})`;
         splitRight.style.backgroundImage = `url(${dataUrl})`;
 
         // Setup Reveal Data
-        document.getElementById('reveal-img-merged').src = dataUrl;
+        // Map JSON keys to UI:
+        // "split the indenties image" -> Center
+        // "qleft image" -> Left
+        // "right image" -> Right
+        // "text" -> Name
 
-        revealImgA.src = `${ASSET_PATH}img${pad(idA)}.jpg`;
-        revealImgB.src = `${ASSET_PATH}img${pad(idB)}.jpg`;
-        revealNameA.textContent = `UNIVERSE #${pad(idA)}`;
-        revealNameB.textContent = `UNIVERSE #${pad(idB)}`;
+        document.getElementById('reveal-img-merged').src = mergedSrc;
+
+        if (roundData) {
+            revealImgA.src = roundData["qleft image"];
+            revealImgB.src = roundData["right image"];
+
+            revealNameA.textContent = roundData["left text"] || "HR";
+            revealNameB.textContent = roundData["right text"] || "AI";
+
+            const centerName = document.querySelector('.center-card .hero-name');
+            if (centerName) centerName.textContent = "FUSION COMPLETE";
+        } else {
+            // Fallback
+            revealImgA.src = `assets/img001.jpg`;
+            revealImgB.src = `assets/img002.jpg`;
+            revealNameA.textContent = "HR";
+            revealNameB.textContent = "AI";
+        }
 
     } catch (e) {
         console.error("Merge failed", e);
@@ -175,45 +261,27 @@ async function startMergePhase(idA, idB) {
 }
 
 // --- PHASE 3 -> 4: STORM SPLIT ---
+// --- PHASE 3 -> 4: STORM SPLIT (Now Infusion) ---
 async function triggerStormSplit() {
     splitBtn.classList.add('hidden'); // Hide button
 
-    // 1. SHAKE THE UNIVERSE
-    document.body.classList.add('screen-shake');
+    // 1. INFUSION DETONATION
+    // Instead of splitting, we infuse the energy
+    const sphere = document.querySelector('.energy-sphere');
+    sphere.classList.add('infusing');
 
-    // 2. CRACK
-    // Hide canvas, show split container
-    canvas.style.opacity = 0;
-    splitContainer.classList.remove('hidden');
+    // Wait for animation to complete (CSS is 1.5s)
+    await sleep(1500);
 
-    await sleep(800); // Shaking for a bit...
-
-    // 3. FLASH & SPLIT
-    const whiteOut = stormOverlay.querySelector('.white-out');
-    stormOverlay.classList.remove('hidden');
-    whiteOut.style.opacity = 1;
-
-    // Trigger separation
-    splitLeft.style.transform = "translateX(-200px) rotate(-10deg)";
-    splitRight.style.transform = "translateX(200px) rotate(10deg)";
-    splitContainer.style.opacity = 0;
-    splitContainer.style.transition = "opacity 0.5s 0.2s"; // Fade out while splitting
-
-    await sleep(200); // Wait for flash to peak
-
-    // 4. TRANSITION TO REVEAL
+    // 2. TRANSITION TO REVEAL
     screens.merge.classList.remove('active');
     screens.merge.classList.add('hidden');
 
+    // Reset sphere state immediately so it's ready for next time (even though hidden)
+    sphere.classList.remove('infusing');
+
     screens.reveal.classList.remove('hidden');
     screens.reveal.classList.add('active'); // Triggers CSS floatUp anims
-
-    // Fade out flash
-    whiteOut.style.opacity = 0;
-    document.body.classList.remove('screen-shake');
-
-    await sleep(500);
-    stormOverlay.classList.add('hidden');
 }
 
 // --- UTILS ---
@@ -231,11 +299,11 @@ function switchScreen(name) {
     target.classList.add('active');
 }
 
-function loadImage(id) {
+function loadImage(filename) {
     return new Promise((resolve) => {
         const img = new Image();
         img.crossOrigin = 'Anonymous';
-        img.src = `${ASSET_PATH}img${pad(id)}.jpg`;
+        img.src = `${ASSET_PATH}${filename}`;
         img.onload = () => resolve(img);
         img.onerror = () => {
             // Fallback

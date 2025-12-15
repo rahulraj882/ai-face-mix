@@ -1,0 +1,23 @@
+[
+    {
+        "split the indenties image": "assets/preview-merged.jpeg",
+        "qleft image": "assets/img001.jpeg",
+        "right image": "assets/img002.jpg",
+        "left text": "HR",
+        "right text": "AI"
+    },
+    {
+        "split the indenties image": "assets/shailesh+gaurav.jpeg",
+        "qleft image": "assets/gaurav.jpeg",
+        "right image": "assets/shailesh.jpeg",
+        "left text": "HR",
+        "right text": "AI"
+    },
+    {
+        "split the indenties image": "assets/sudheer+tarun.jpeg",
+        "qleft image": "assets/sudheer.jpeg",
+        "right image": "assets/tarun.jpeg",
+        "left text": "HR",
+        "right text": "AI"
+    }
+]
