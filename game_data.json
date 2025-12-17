@@ -9,7 +9,7 @@
         "right image name": "BP Singh Sir"
     },
     {
-        "split the indenties image": "assets/Result/Nilesh_Sameer.png",
+        "split the indenties image": "assets/Result/top-bottom/NMSM.png",
         "qleft image": "assets/Nilesh_Mahajan.jpeg",
         "right image": "assets/Sameer_Mehta.jpeg",
         "left text": "BOND",
@@ -18,7 +18,7 @@
         "right image name": "Sameer Mehta Sir"
     },
     {
-        "split the indenties image": "assets/Result/Kiran_Anish.png",
+        "split the indenties image": "assets/Result/top-bottom/KTAS.png",
         "qleft image": "assets/Kiran_Thomas.png",
         "right image": "assets/Anish_Shah.jpeg",
         "left text": "JIO",
@@ -27,7 +27,7 @@
         "right image name": "Anish Shah Sir"
     },
     {
-        "split the indenties image": "assets/Result/Gaurav_Mohsin.png",
+        "split the indenties image": "assets/Result/top-bottom/GDMA.png",
         "qleft image": "assets/Gaurav_Duggal.png",
         "right image": "assets/Mohsin_Abbas.png",
         "left text": "Enterprise",
@@ -45,7 +45,7 @@
         "right image name": "Rahul Mukherjee Sir"
     },
     {
-        "split the indenties image": "assets/Result/RVST.png",
+        "split the indenties image": "assets/Result/top-bottom/RVST.png",
         "qleft image": "assets/Raghuram_Velega.jpeg",
         "right image": "assets/sanjiv_tuli.jfif",
         "left text": "Data Platforms",
@@ -54,7 +54,7 @@
         "right image name": "Sanjiv Tuli Sir"
     },
     {
-        "split the indenties image": "assets/Result/top-bottom/DKSK.png",
+        "split the indenties image": "assets/Result/top-bottom/DKSA.png",
         "qleft image": "assets/senthil.jfif",
         "right image": "assets/Deepak_Kamale.jpeg",
         "left text": "Data Platforms",

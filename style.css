@@ -988,7 +988,7 @@ body {
     object-fit: cover;
     border: 3px solid var(--neon-cyan);
     box-shadow: 0 0 20px rgba(0, 243, 255, 0.3);
-    filter: blur(7px);
+    filter: blur(10px);
     opacity: 0.9;
     margin-bottom: 1rem;
     /* Added replacement margin */
