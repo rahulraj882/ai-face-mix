@@ -95,6 +95,8 @@ body {
 .screen.active {
     opacity: 1;
     pointer-events: all;
+    display: flex;
+    /* Ensure flex layout is active */
 }
 
 .hidden {
