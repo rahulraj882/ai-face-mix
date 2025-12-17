@@ -527,8 +527,13 @@ async function startMergePhase(roundData) {
             revealImgA.src = roundData["qleft image"];
             revealImgB.src = roundData["right image"];
 
+<<<<<<< HEAD
             revealNameA.textContent = roundData["left text"] || "HR";
             revealNameB.textContent = roundData["right text"] || "Enterprise";
+=======
+            revealNameA.textContent = roundData["left text"] || "JIO";
+            revealNameB.textContent = roundData["right text"] || "JIO";
+>>>>>>> bcc6e57141fb4f4a6d6f6d7d31ed63fd27e973aa
 
             const revealOriginA = document.getElementById('reveal-origin-a');
             const revealOriginB = document.getElementById('reveal-origin-b');
@@ -540,8 +545,13 @@ async function startMergePhase(roundData) {
             // Fallback
             revealImgA.src = `assets/img001.jpeg`;
             revealImgB.src = `assets/img002.jpg`;
+<<<<<<< HEAD
             revealNameA.textContent = "HR";
             revealNameB.textContent = "Enterprise";
+=======
+            revealNameA.textContent = "JIO";
+            revealNameB.textContent = "JIO";
+>>>>>>> bcc6e57141fb4f4a6d6f6d7d31ed63fd27e973aa
         }
 
     } catch (e) {
