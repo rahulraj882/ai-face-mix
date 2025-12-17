@@ -1,50 +1,5 @@
 [
     {
-        "split the indenties image": "assets/Result/Sudhir_Tarun.png",
-        "qleft image": "assets/Sudhir_Mittal.jpeg",
-        "right image": "assets/Tarun_Kalra.jpeg",
-        "left text": "Enterprise",
-        "right text": "Business Cloud",
-        "qleft image name": "Sudhir Mittal Sir",
-        "right image name": "Tarun Kalra Sir"
-    },
-    {
-        "split the indenties image": "assets/Result/Akhand_Rahul.png",
-        "qleft image": "assets/Akhand_Kumar.png",
-        "right image": "assets/Rahul_Mukherjee.jpeg",
-        "left text": "HR",
-        "right text": "HR",
-        "qleft image name": "Akhand Kumar Sir",
-        "right image name": "Rahul Mukherjee Sir"
-    },
-    {
-        "split the indenties image": "assets/Result/Gaurav_Mohsin.png",
-        "qleft image": "assets/Gaurav_Duggal.png",
-        "right image": "assets/Mohsin_Abbas.png",
-        "left text": "Enterprise",
-        "right text": "Product & Engineering",
-        "qleft image name": "Gaurav Duggal Sir",
-        "right image name": "Mohsin Abbas Sir"
-    },
-    {
-        "split the indenties image": "assets/Result/Raghuram_Deepak.png",
-        "qleft image": "assets/Raghuram_Velega.jpeg",
-        "right image": "assets/Deepak_Kamale.jpeg",
-        "left text": "Data Platforms",
-        "right text": "Assets",
-        "qleft image name": "Raghuram Velega Sir",
-        "right image name": "Deepak Kamale Sir"
-    },
-    {
-        "split the indenties image": "assets/Result/Shailesh_Gaurav.png",
-        "qleft image": "assets/Shailesh_Naik.jpeg",
-        "right image": "assets/Gaurav_Aggarwal.png",
-        "left text": "DDC Studio",
-        "right text": "AI Platforms",
-        "qleft image name": "Shailesh Naik Sir",
-        "right image name": "Gaurav Aggarwal Sir"
-    },
-    {
         "split the indenties image": "assets/Result/Brijesh_BP.jpeg",
         "qleft image": "assets/Brijesh_Datta.jpg",
         "right image": "assets/BP_Singh.jpeg",
@@ -70,5 +25,68 @@
         "right text": "JIO",
         "qleft image name": "Kiran Thomas Sir",
         "right image name": "Anish Shah Sir"
+    },
+    {
+        "split the indenties image": "assets/Result/Gaurav_Mohsin.png",
+        "qleft image": "assets/Gaurav_Duggal.png",
+        "right image": "assets/Mohsin_Abbas.png",
+        "left text": "Enterprise",
+        "right text": "Product & Engineering",
+        "qleft image name": "Gaurav Duggal Sir",
+        "right image name": "Mohsin Abbas Sir"
+    },
+    {
+        "split the indenties image": "assets/Result/rahul_shailesh.jpeg",
+        "qleft image": "assets/Shailesh_Naik.jpeg",
+        "right image": "assets/Rahul_Mukherjee.jpeg",
+        "left text": "HR",
+        "right text": "HR",
+        "qleft image name": "Shailesh Naik Sir",
+        "right image name": "Rahul Mukherjee Sir"
+    },
+    {
+        "split the indenties image": "assets/Result/RVST.png",
+        "qleft image": "assets/Raghuram_Velega.jpeg",
+        "right image": "assets/sanjiv_tuli.jfif",
+        "left text": "Data Platforms",
+        "right text": "UI/UX",
+        "qleft image name": "Raghuram Velega Sir",
+        "right image name": "Sanjiv Tuli Sir"
+    },
+    {
+        "split the indenties image": "assets/Result/top-bottom/DKSK.png",
+        "qleft image": "assets/senthil.jfif",
+        "right image": "assets/Deepak_Kamale.jpeg",
+        "left text": "Data Platforms",
+        "right text": "SRE",
+        "qleft image name": "Senthil A Sir",
+        "right image name": "Deepak Kamale Sir"
+    },
+    {
+        "split the indenties image": "assets/Result/top-bottom/HMSK.png",
+        "qleft image": "assets/hemant_mhadgut.jfif",
+        "right image": "assets/suresh_kumar.jfif",
+        "left text": "Data Platforms",
+        "right text": "SRE",
+        "qleft image name": "Hemant Mhadgut Sir",
+        "right image name": "Suresh Kumar Sir"
+    },
+    {
+        "split the indenties image": "assets/Result/top-bottom/LMAB.png",
+        "qleft image": "assets/lavanya_menon.jpg",
+        "right image": "assets/abantika_borman.jpg",
+        "left text": "HR",
+        "right text": "HR",
+        "qleft image name": "Lavanya Menon Ma'am",
+        "right image name": "Abantika Barman Ma'am"
+    },
+    {
+        "split the indenties image": "assets/Result/top-bottom/AKAS.png",
+        "qleft image": "assets/Akhand_Kumar.png",
+        "right image": "assets/anil_singh.jfif",
+        "left text": "HR",
+        "right text": "Data Analytics",
+        "qleft image name": "Akhand Kumar Sir",
+        "right image name": "Anil Singh Sir"
     }
 ]
