@@ -60,11 +60,20 @@ const canvas = document.getElementById('merge-canvas');
 const ctx = canvas.getContext('2d');
 const splitBtn = document.getElementById('split-btn'); // Renamed from revealBtn
 const resetBtn = document.getElementById('reset-btn');
+const showClueBtn = document.getElementById('show-clue-btn');
 
 const splitContainer = document.getElementById('split-container');
 const splitLeft = document.getElementById('split-left');
 const splitRight = document.getElementById('split-right');
 const stormOverlay = document.getElementById('storm-overlay');
+
+// Clue elements
+const clueLeft = document.getElementById('clue-left');
+const clueRight = document.getElementById('clue-right');
+const clueImgLeft = document.getElementById('clue-img-left');
+const clueImgRight = document.getElementById('clue-img-right');
+const clueLabelLeft = document.getElementById('clue-label-left');
+const clueLabelRight = document.getElementById('clue-label-right');
 
 // Reveal elements
 const revealImgA = document.getElementById('reveal-img-a');
@@ -116,6 +125,48 @@ class SoundSystem {
 
     playHover() {
         this.playTone(300, 'sine', 0.05);
+    }
+
+    playReveal() {
+        this.ensureContext();
+        const t = this.ctx.currentTime;
+
+        // 1. Deep Impact (Bass Drop)
+        const bassOsc = this.ctx.createOscillator();
+        const bassGain = this.ctx.createGain();
+        bassOsc.type = 'sine';
+        bassOsc.frequency.setValueAtTime(150, t);
+        bassOsc.frequency.exponentialRampToValueAtTime(0.01, t + 2); // Slow drop
+        bassGain.gain.setValueAtTime(1, t); // Loud start
+        bassGain.gain.exponentialRampToValueAtTime(0.01, t + 2);
+        bassOsc.connect(bassGain);
+        bassGain.connect(this.masterGain);
+        bassOsc.start(t);
+        bassOsc.stop(t + 2);
+
+        // 2. Magical Chord (Arpeggio + Sustain)
+        // A Major 7: A4, C#5, E5, G#5, A5
+        const chord = [440, 554.37, 659.25, 830.61, 880];
+        chord.forEach((freq, index) => {
+            const osc = this.ctx.createOscillator();
+            const gain = this.ctx.createGain();
+            osc.type = 'triangle';
+
+            // Stagger start slightly
+            const start = t + (index * 0.05);
+
+            osc.frequency.value = freq;
+
+            // Envelope: Attack -> Sustain -> Release
+            gain.gain.setValueAtTime(0, start);
+            gain.gain.linearRampToValueAtTime(0.2, start + 0.1);
+            gain.gain.exponentialRampToValueAtTime(0.01, start + 4); // Long tail
+
+            osc.connect(gain);
+            gain.connect(this.masterGain);
+            osc.start(start);
+            osc.stop(start + 4);
+        });
     }
 
     playPowerUp() {
@@ -181,14 +232,43 @@ class SoundSystem {
         sub.stop(t + 0.5);
     }
 
-    playReveal() {
+    playBloop() {
         this.ensureContext();
-        const now = this.ctx.currentTime;
-        // Major chord arpeggio
-        this.playTone(440, 'sine', 1.5, 0);       // A4
-        this.playTone(554.37, 'sine', 1.5, 0.1); // C#5
-        this.playTone(659.25, 'sine', 1.5, 0.2); // E5
-        this.playTone(880, 'sine', 2.0, 0.4);    // A5
+        // High pitched short blip
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(800, this.ctx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(400, this.ctx.currentTime + 0.1);
+        gain.gain.setValueAtTime(0.2, this.ctx.currentTime); // Increased volume
+        gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.1);
+
+        osc.connect(gain);
+        gain.connect(this.masterGain);
+        osc.start();
+        osc.stop(this.ctx.currentTime + 0.1);
+    }
+
+    speak(text) {
+        if ('speechSynthesis' in window) {
+            // Cancel any current speaking
+            window.speechSynthesis.cancel();
+
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.volume = 1; // 0 to 1
+            utterance.rate = 0.9; // Slightly slower
+            utterance.pitch = 0.8; // Slightly lower/robotic
+
+            // Try to find a good "system" voice (usually Google US English or Microsoft David)
+            const voices = window.speechSynthesis.getVoices();
+            // Prefer a "Zira" or "Google US" voice if possible for sci-fi feel
+            const sciFiVoice = voices.find(v => v.name.includes('Zira') || v.name.includes('Google US English'));
+            if (sciFiVoice) {
+                utterance.voice = sciFiVoice;
+            }
+
+            window.speechSynthesis.speak(utterance);
+        }
     }
 }
 
@@ -196,10 +276,16 @@ const sfx = new SoundSystem();
 
 // --- INITIALIZATION ---
 async function init() {
-    createFloatingShards();
+    // createFloatingShards(); // Removed
+
 
     // Initialize Audio Context on first interaction
     document.body.addEventListener('click', () => sfx.ensureContext(), { once: true });
+
+    // Preload voices (chrome needs this sometimes)
+    if ('speechSynthesis' in window) {
+        window.speechSynthesis.getVoices();
+    }
 
     // Button SFX
     document.querySelectorAll('button').forEach(btn => {
@@ -207,6 +293,7 @@ async function init() {
     });
 
     document.getElementById('start-btn').addEventListener('click', () => {
+        sfx.playClick();
         sfx.playPowerUp();
         startSelectionPhase();
     });
@@ -214,6 +301,16 @@ async function init() {
     splitBtn.addEventListener('click', () => {
         sfx.playWarp();
         triggerStormSplit();
+    });
+
+    showClueBtn.addEventListener('click', () => {
+        sfx.playClick();
+        showClue();
+    });
+
+    document.getElementById('peek-btn').addEventListener('click', () => {
+        sfx.playClick();
+        triggerHandSequence();
     });
 
     resetBtn.addEventListener('click', () => {
@@ -234,6 +331,14 @@ async function init() {
 function resetGame() {
     // Reset Split/Merge State
     splitBtn.classList.remove('hidden');
+    showClueBtn.classList.remove('hidden'); // Ensure button is back
+    document.getElementById('peek-btn').classList.remove('hidden'); // Ensure peek button is back
+    showClueBtn.classList.remove('active'); // Reset active state
+
+    // Hide Clues
+    clueLeft.classList.add('hidden');
+    clueRight.classList.add('hidden');
+
     canvas.style.opacity = 1;
 
     // Ensure infusion class is gone
@@ -282,6 +387,9 @@ function createFloatingShards() {
 async function startSelectionPhase() {
     switchScreen('selection');
 
+    // Voiceover
+    sfx.speak("Scanning across infinite realities");
+
     // 1. Populate full screen grid
     // Need enough to cover screen. 150 items usually safe for 1080p.
     mosaicGrid.innerHTML = '';
@@ -322,6 +430,9 @@ async function startSelectionPhase() {
         const item = items[idx];
         item.classList.add('phasing');
         setTimeout(() => item.classList.remove('phasing'), 300);
+
+        // Play bloop sound
+        sfx.playBloop();
     }, 100);
 
     // 3. Select Targets based on JSON
@@ -341,19 +452,21 @@ async function startSelectionPhase() {
 // --- PHASE 2 -> 3: MERGE (SPHERE) ---
 // --- PHASE 2 -> 3: MERGE (SPHERE) ---
 async function startMergePhase(roundData) {
-    const clueText = document.getElementById('clue-text');
-    const clueContainer = document.getElementById('clue-overlay');
     const sphereWrapper = document.getElementById('sphere-wrapper');
     const mergeControls = document.getElementById('merge-controls');
 
-    // 1. Prepare UI State BEFORE switching screen (Hide Sphere/Controls, Show Clue)
-    if (clueContainer && sphereWrapper && mergeControls) {
-        clueContainer.classList.remove('hidden');
-        sphereWrapper.classList.add('faded-out'); // Hide immediately
-        mergeControls.classList.add('faded-out'); // Hide immediately
+    // 1. Prepare UI State
+    if (sphereWrapper && mergeControls) {
+        // Reset clue state
+        clueLeft.classList.add('hidden');
+        clueRight.classList.add('hidden');
+        showClueBtn.classList.remove('active');
+
+        sphereWrapper.classList.add('faded-out'); // Fade out briefly for load
+        mergeControls.classList.add('faded-out');
     }
 
-    // 2. Clear output canvas to ensure no old image persists
+    // 2. Clear output canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     switchScreen('merge');
@@ -363,13 +476,15 @@ async function startMergePhase(roundData) {
         // Fallback if no specific data
         const mergedSrc = roundData ? roundData["split the indenties image"] : 'assets/preview-merged.jpeg';
 
-        if (clueText) {
-            const lText = (roundData && roundData["left text"]) ? roundData["left text"] : "HR";
-            const rText = (roundData && roundData["right text"]) ? roundData["right text"] : "AI";
-            clueText.textContent = `${lText} X ${rText}`;
+        // Setup Clue Data (Even if hidden)
+        if (roundData) {
+            clueImgLeft.src = roundData["qleft image"];
+            clueImgRight.src = roundData["right image"];
+            clueLabelLeft.textContent = roundData["left text"] || "HR";
+            clueLabelRight.textContent = roundData["right text"] || "Enterprise";
         }
 
-        // 3. Wait for BOTH 5 seconds (Clue Drama) AND Image Load
+        // 3. Load Image (No 5 second wait anymore)
         const [previewImg] = await Promise.all([
             new Promise((resolve) => {
                 const img = new Image();
@@ -377,7 +492,7 @@ async function startMergePhase(roundData) {
                 img.onload = () => resolve(img);
                 img.onerror = () => resolve(img); // Proceed even if fail
             }),
-            sleep(5000)
+            sleep(500) // Small delay for fade transitions
         ]);
 
         // 4. Draw merged result with full visibility (no crop)
@@ -400,18 +515,12 @@ async function startMergePhase(roundData) {
         ctx.drawImage(previewImg, 0, 0, canvas.width, canvas.height);
 
         // 5. Reveal Sphere and Controls
-        if (clueContainer && sphereWrapper && mergeControls) {
-            clueContainer.classList.add('hidden');
+        if (sphereWrapper && mergeControls) {
             sphereWrapper.classList.remove('faded-out');
             mergeControls.classList.remove('faded-out');
         }
 
-        // Prepare Split Animation Assets (Legacy visual backup)
-        const dataUrl = canvas.toDataURL();
-        splitLeft.style.backgroundImage = `url(${dataUrl})`;
-        splitRight.style.backgroundImage = `url(${dataUrl})`;
-
-        // Setup Reveal Data
+        // Setup Reveal Data for when they click Reveal
         document.getElementById('reveal-img-merged').src = mergedSrc;
 
         if (roundData) {
@@ -419,21 +528,20 @@ async function startMergePhase(roundData) {
             revealImgB.src = roundData["right image"];
 
             revealNameA.textContent = roundData["left text"] || "HR";
-            revealNameB.textContent = roundData["right text"] || "AI";
+            revealNameB.textContent = roundData["right text"] || "Enterprise";
 
             const revealOriginA = document.getElementById('reveal-origin-a');
             const revealOriginB = document.getElementById('reveal-origin-b');
             if (revealOriginA) revealOriginA.textContent = roundData["qleft image name"] || "UNIVERSE A";
             if (revealOriginB) revealOriginB.textContent = roundData["right image name"] || "UNIVERSE B";
 
-            const centerName = document.querySelector('.center-card .hero-name');
-            if (centerName) centerName.textContent = "FUSION COMPLETE";
+
         } else {
             // Fallback
             revealImgA.src = `assets/img001.jpeg`;
             revealImgB.src = `assets/img002.jpg`;
             revealNameA.textContent = "HR";
-            revealNameB.textContent = "AI";
+            revealNameB.textContent = "Enterprise";
         }
 
     } catch (e) {
@@ -441,12 +549,27 @@ async function startMergePhase(roundData) {
     }
 }
 
+function showClue() {
+    const isHidden = clueLeft.classList.contains('hidden');
+    if (isHidden) {
+        clueLeft.classList.remove('hidden');
+        clueRight.classList.remove('hidden');
+        showClueBtn.classList.add('active');
+        // showClueBtn.textContent = "CLUE REVEALED"; // Optional: Keep it simple as per request
+    }
+}
+
 
 
 // --- PHASE 3 -> 4: STORM SPLIT ---
-// --- PHASE 3 -> 4: STORM SPLIT (Now Infusion) ---
 async function triggerStormSplit() {
     splitBtn.classList.add('hidden'); // Hide button
+    showClueBtn.classList.add('hidden'); // Hide clue button too
+    document.getElementById('peek-btn').classList.add('hidden'); // Hide peek button
+
+    // Hide clue panels if open
+    clueLeft.classList.add('hidden');
+    clueRight.classList.add('hidden');
 
     // 1. INFUSION DETONATION
     // Instead of splitting, we infuse the energy
@@ -500,5 +623,56 @@ function loadImage(filename) {
     });
 }
 
+// --- CURTAIN PEEK SEQUENCE ---
+async function triggerHandSequence() {
+    const curtain = document.getElementById('black-curtain');
+    const allBtns = document.querySelectorAll('button');
+
+    if (!curtain) return;
+
+    // Disable interactions
+    allBtns.forEach(b => b.disabled = true);
+
+    // Setup Transitions
+    curtain.style.transition = 'top 1s cubic-bezier(0.25, 1, 0.5, 1)';
+
+    // --- 1. TOP COVER ---
+    // Start Top (-100%) -> Move to 0% (Cover Top Half)
+    curtain.style.top = '-100%';
+    void curtain.offsetWidth; // Force Paint
+
+    curtain.style.top = '-2%'; // Slight overlap
+
+    await sleep(2000); // Hold
+
+    // Exit Top
+    curtain.style.top = '-100%';
+    await sleep(1000);
+
+    // --- 2. BOTTOM COVER ---
+    // Move "Start" to Bottom
+    curtain.style.transition = 'none';
+    curtain.style.top = '100%'; // Below container
+    void curtain.offsetWidth;
+
+    // Animate Up to cover Bottom Half
+    curtain.style.transition = 'top 1s cubic-bezier(0.25, 1, 0.5, 1)';
+    curtain.style.top = '50%'; // Top edge at 50% covers the bottom half
+
+    await sleep(2000); // Hold
+
+    // Exit Bottom
+    curtain.style.top = '100%';
+    await sleep(1000);
+
+    // Reset
+    curtain.style.transition = 'none';
+    curtain.style.top = '-100%';
+
+    // Re-enable interactions
+    allBtns.forEach(b => b.disabled = false);
+}
+
 // Run
 init();
+

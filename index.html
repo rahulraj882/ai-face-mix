@@ -32,7 +32,7 @@
             <h2 class="sub-title glitch-text" data-text="FACE FUSION">FACE FUSION</h2>
         </div>
         <button id="start-btn" class="cosmic-btn">INITIALIZE CONNECTION</button>
-        <div class="floating-shards"></div>
+
     </section>
 
     <!-- PHASE 2: SELECTION SCREEN (Full Mosaic) -->
@@ -48,9 +48,15 @@
 
     <!-- PHASE 3: MERGE SCREEN (Sphere Display) -->
     <section id="merge-screen" class="screen hidden">
-        <div id="clue-overlay" class="clue-container">
-            <h3 class="clue-label">CLUE</h3>
-            <h1 id="clue-text" class="clue-text"></h1>
+        <!-- Side Clue Panels -->
+        <div id="clue-left" class="clue-side-panel left hidden">
+            <img id="clue-img-left" class="clue-img" src="" alt="Clue Left">
+            <span id="clue-label-left" class="clue-label-text">LEFT</span>
+        </div>
+
+        <div id="clue-right" class="clue-side-panel right hidden">
+            <img id="clue-img-right" class="clue-img" src="" alt="Clue Right">
+            <span id="clue-label-right" class="clue-label-text">RIGHT</span>
         </div>
 
         <div class="sphere-container" id="sphere-wrapper">
@@ -58,6 +64,9 @@
                 <canvas id="merge-canvas" width="400" height="400"></canvas>
                 <div class="sphere-glint"></div>
                 <div class="sphere-rings"></div>
+                <div id="hand-overlay-container" class="hand-container">
+                    <div id="black-curtain" class="black-curtain"></div>
+                </div>
             </div>
 
             <!-- Hidden container for the split animation assets -->
@@ -73,6 +82,10 @@
                 <span class="btn-glow"></span>
                 REVEAL THE IDENTITIES
             </button>
+            <div class="secondary-controls">
+                <button id="show-clue-btn" class="cosmic-btn small">SHOW CLUE</button>
+                <button id="peek-btn" class="cosmic-btn small">PEEK</button>
+            </div>
         </div>
     </section>
 
@@ -93,10 +106,7 @@
             <div class="reveal-card center-card">
                 <div class="portal-halo highlight-halo"></div>
                 <img id="reveal-img-merged" src="assets/preview-merged.jpeg" alt="Merged Reality">
-                <div class="name-plate">
-                    <span class="origin-label">NEW REALITY</span>
-                    <span class="hero-name">FUSION COMPLETE</span>
-                </div>
+
             </div>
 
             <!-- Right: Origin B -->
@@ -110,7 +120,7 @@
             </div>
         </div>
 
-        <button id="reset-btn" class="cosmic-btn small">FUSE ANOTHER REALITY</button>
+        <button id="reset-btn" class="cosmic-btn small">Unveil the next Fusion</button>
     </section>
 
     <!-- Global Effects -->
