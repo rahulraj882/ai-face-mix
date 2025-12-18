@@ -491,6 +491,9 @@ body {
     position: relative;
     padding: 1.5rem 4rem;
     color: #fff;
+    font-family: var(--font-code);
+    font-size: 2.5rem;
+    font-weight: 700;
     border-color: var(--neon-purple);
     box-shadow: 0 0 20px rgba(188, 19, 254, 0.2);
 }
@@ -590,13 +593,14 @@ body {
 
 .origin-label {
     display: block;
-    font-size: 2rem;
+    font-size: 2.5rem;
+    font-weight: bold;
     color: var(--neon-purple);
     letter-spacing: 2px;
 }
 
 .hero-name {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     color: #fff;
     text-shadow: 0 0 10px var(--neon-cyan);
 }
@@ -989,7 +993,7 @@ body {
     object-fit: cover;
     border: 3px solid var(--neon-cyan);
     box-shadow: 0 0 20px rgba(0, 243, 255, 0.3);
-    filter: blur(10px);
+    filter: blur(12px);
     opacity: 0.9;
     margin-bottom: 1rem;
     /* Added replacement margin */
