@@ -75,11 +75,14 @@ const clueImgRight = document.getElementById('clue-img-right');
 const clueLabelLeft = document.getElementById('clue-label-left');
 const clueLabelRight = document.getElementById('clue-label-right');
 
+
 // Reveal elements
 const revealImgA = document.getElementById('reveal-img-a');
 const revealImgB = document.getElementById('reveal-img-b');
 const revealNameA = document.getElementById('reveal-name-a');
 const revealNameB = document.getElementById('reveal-name-b');
+
+
 
 // --- HELPERS ---
 const pad = (num) => String(num).padStart(3, '0');
