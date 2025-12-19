@@ -391,7 +391,7 @@ async function startSelectionPhase() {
     switchScreen('selection');
 
     // Voiceover
-    sfx.speak("Scanning across infinite realities");
+    sfx.speak("Scanning across infinite leadership realities");
 
     // 1. Populate full screen grid
     // Need enough to cover screen. 150 items usually safe for 1080p.
