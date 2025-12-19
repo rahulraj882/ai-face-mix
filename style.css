@@ -489,7 +489,7 @@ body {
     z-index: 100;
     pointer-events: auto;
     position: relative;
-    padding: 1.5rem 4rem;
+    padding: 1rem 1.5rem;
     color: #fff;
     font-family: var(--font-code);
     font-size: 2.5rem;
@@ -593,7 +593,7 @@ body {
 
 .origin-label {
     display: block;
-    font-size: 2.5rem;
+    font-size: 2.3rem;
     font-weight: bold;
     color: var(--neon-purple);
     letter-spacing: 2px;
