@@ -52,7 +52,8 @@ const screens = {
     intro: document.getElementById('intro-screen'),
     selection: document.getElementById('selection-screen'),
     merge: document.getElementById('merge-screen'),
-    reveal: document.getElementById('reveal-screen')
+    reveal: document.getElementById('reveal-screen'),
+    gameOver: document.getElementById('game-over-screen')
 };
 
 const mosaicGrid = document.getElementById('mosaic-grid');
@@ -60,6 +61,7 @@ const canvas = document.getElementById('merge-canvas');
 const ctx = canvas.getContext('2d');
 const splitBtn = document.getElementById('split-btn'); // Renamed from revealBtn
 const resetBtn = document.getElementById('reset-btn');
+const restartBtn = document.getElementById('restart-btn');
 const showClueBtn = document.getElementById('show-clue-btn');
 
 const splitContainer = document.getElementById('split-container');
@@ -321,6 +323,14 @@ async function init() {
         resetGame();
     });
 
+    if (restartBtn) {
+        restartBtn.addEventListener('click', () => {
+            sfx.playClick();
+            sfx.playPowerUp();
+            fullRestart();
+        });
+    }
+
     // Load Game Data
     try {
         const response = await fetch('game_data.json');
@@ -359,13 +369,41 @@ function resetGame() {
     Object.values(screens).forEach(s => s.classList.remove('active'));
 
     // Advance Round (Sequential)
-    if (gameData.length > 1) {
-        currentRoundIndex = (currentRoundIndex + 1) % gameData.length;
-    } else {
-        currentRoundIndex = 0;
+    if (gameData.length > 0) {
+        if (currentRoundIndex >= gameData.length - 1) {
+            // End of Game
+            showGameOver();
+            return;
+        }
+        currentRoundIndex++;
     }
 
     // Start Selection
+    startSelectionPhase();
+}
+
+function showGameOver() {
+    switchScreen('gameOver');
+    sfx.speak("Thank you for participating");
+}
+
+function fullRestart() {
+    currentRoundIndex = 0;
+
+    // Reset Split/Merge State Visibility (same as resetGame)
+    splitBtn.classList.remove('hidden');
+    showClueBtn.classList.remove('hidden');
+    document.getElementById('peek-btn').classList.remove('hidden');
+    showClueBtn.classList.remove('active');
+
+    // Hide Clues
+    clueLeft.classList.add('hidden');
+    clueRight.classList.add('hidden');
+
+    // Ensure infusion class is gone
+    const sphere = document.querySelector('.energy-sphere');
+    if (sphere) sphere.classList.remove('infusing');
+
     startSelectionPhase();
 }
 
@@ -599,6 +637,7 @@ async function triggerStormSplit() {
 // --- UTILS ---
 function switchScreen(name) {
     Object.values(screens).forEach(s => {
+        if (!s) return;
         s.classList.remove('active');
         s.classList.add('hidden');
     });
