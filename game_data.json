@@ -13,7 +13,7 @@
         "qleft image": "assets/Nilesh_Mahajan.jpeg",
         "right image": "assets/Sameer_Mehta.jpeg",
         "left text": "(BOND)",
-        "right text": "(Enterprise)",
+        "right text": "(Jio Matrix)",
         "qleft image name": "Mr. Nilesh Mahajan",
         "right image name": "Mr. Sameer Mehta"
     },
@@ -31,45 +31,9 @@
         "qleft image": "assets/Gaurav_Duggal.png",
         "right image": "assets/Mohsin_Abbas.png",
         "left text": "(Enterprise)",
-        "right text": "(Product & Engineering)",
+        "right text": "(My Jio)",
         "qleft image name": "Mr. Gaurav Duggal",
         "right image name": "Mr. Mohsin Abbas"
-    },
-    {
-        "split the indenties image": "assets/Result/rahul_shailesh.jpeg",
-        "qleft image": "assets/Shailesh_Naik.jpeg",
-        "right image": "assets/Rahul_Mukherjee.jpeg",
-        "left text": "(HR)",
-        "right text": "(HR)",
-        "qleft image name": "Mr. Shailesh Naik",
-        "right image name": "Mr. Rahul Mukherjee"
-    },
-    {
-        "split the indenties image": "assets/Result/top-bottom/RVST.png",
-        "qleft image": "assets/Raghuram_Velega.jpeg",
-        "right image": "assets/sanjiv_tuli.jfif",
-        "left text": "(Data Platforms)",
-        "right text": "(UI/UX)",
-        "qleft image name": "Mr. Raghuram Velega",
-        "right image name": "Mr. Sanjiv Tuli"
-    },
-    {
-        "split the indenties image": "assets/Result/top-bottom/DKSA.png",
-        "qleft image": "assets/senthil.jfif",
-        "right image": "assets/Deepak_Kamale.jpeg",
-        "left text": "(Data Platforms)",
-        "right text": "(SRE)",
-        "qleft image name": "Mr. Senthil A",
-        "right image name": "Mr. Deepak Kamale"
-    },
-    {
-        "split the indenties image": "assets/Result/top-bottom/HMSK.png",
-        "qleft image": "assets/hemant_mhadgut.jfif",
-        "right image": "assets/suresh_kumar.jfif",
-        "left text": "(Data Platforms)",
-        "right text": "(SRE)",
-        "qleft image name": "Mr. Hemant Mhadgut",
-        "right image name": "Mr. Suresh Kumar"
     },
     {
         "split the indenties image": "assets/Result/top-bottom/LMAB.png",
@@ -81,12 +45,21 @@
         "right image name": "Ms. Abantika Barman"
     },
     {
-        "split the indenties image": "assets/Result/top-bottom/AKAS.png",
-        "qleft image": "assets/Akhand_Kumar.png",
-        "right image": "assets/anil_singh.jfif",
-        "left text": "(HR)",
-        "right text": "(Data Analytics)",
-        "qleft image name": "Mr. Akhand Kumar",
-        "right image name": "Mr. Anil Singh"
+        "split the indenties image": "assets/Result/Puneesh-Gaurav.png",
+        "qleft image": "assets/Gaurav_Aggarwal.png",
+        "right image": "assets/puneesh.jfif",
+        "left text": "(AI Platforms)",
+        "right text": "(HR)",
+        "qleft image name": "Mr. Gaurav Aggarwal",
+        "right image name": "Mr. Puneesh Kumar"
+    },
+    {
+        "split the indenties image": "assets/Result/Narendra-BP.png",
+        "qleft image": "assets/narender.jfif",
+        "right image": "assets/BP_Singh.jpeg",
+        "left text": "(DD&P Connectivity)",
+        "right text": "(Tech Ops)",
+        "qleft image name": "Mr. Narender Singh",
+        "right image name": "Mr. BP Singh"
     }
 ]

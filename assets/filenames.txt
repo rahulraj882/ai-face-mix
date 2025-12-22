@@ -1,24 +1,27 @@
-Brijesh_Datta.jpg
-Akhand_Kumar.png
-Akhand_Rahul.png
-Brijesh_BP.png
-Gaurav_Aggarwal.png
-Gaurav_Duggal.png
-Gaurav_Mohsin.png
-Kiran_Anish.png
-Kiran_Thomas.png
-Mohsin_Abbas.png
-Nilesh_Sameer.png
-Raghuram_Deepak.png
-Shailesh_Gaurav.png
-Sudhir_Tarun.png
-Anish_Shah.jpeg
-BP_Singh.jpeg
-Deepak_Kamale.jpeg
-Nilesh_Mahajan.jpeg
-Raghuram_Velega.jpeg
-Rahul_Mukherjee.jpeg
-Sameer_Mehta.jpeg
-Shailesh_Naik.jpeg
-Sudhir_Mittal.jpeg
-Tarun_Kalra.jpeg
+{
+        "split the indenties image": "assets/Result/top-bottom/RVST.png",
+        "qleft image": "assets/Raghuram_Velega.jpeg",
+        "right image": "assets/anil_singh.jfif",
+        "left text": "(Data Platforms)",
+        "right text": "(Data Analytics)",
+        "qleft image name": "Mr. Raghuram Velega",
+        "right image name": "Mr. Anil Singh"
+    },
+    {
+        "split the indenties image": "assets/Result/top-bottom/AKAS.png",
+        "qleft image": "assets/Akhand_Kumar.png",
+        "right image": "assets/preetham.jpg",
+        "left text": "(HR)",
+        "right text": "(HR)",
+        "qleft image name": "Mr. Akhand Kumar",
+        "right image name": "Mr. Preetham Singh"
+    },
+    {
+        "split the indenties image": "assets/Result/top-bottom/AKAS.png",
+        "qleft image": "assets/ashish_jadhav.jfif",
+        "right image": "assets/sanjiv_tuli.jfif",
+        "left text": "(Enterprise Development)",
+        "right text": "(UI/UX)",
+        "qleft image name": "Mr. Ashish Jadhav",
+        "right image name": "Mr. Sanjiv Tuli"
+    }
