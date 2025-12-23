@@ -54,6 +54,51 @@
         "right image name": "Mr. Preetham Singh"
     },
     {
+        "split the indenties image": "assets/Result/Raghuram_Anil.png",
+        "qleft image": "assets/Raghuram_Velega.jpeg",
+        "right image": "assets/anil_singh.jfif",
+        "left text": "(Data Platforms)",
+        "right text": "(Data Analytics)",
+        "qleft image name": "Mr. Raghuram Velega",
+        "right image name": "Mr. Anil Singh"
+    },
+    {
+        "split the indenties image": "assets/Result/Ashish_Sanjiv.png",
+        "qleft image": "assets/ashish_jadhav.jfif",
+        "right image": "assets/sanjiv_tuli.jfif",
+        "left text": "(Enterprise Development)",
+        "right text": "(UI/UX)",
+        "qleft image name": "Mr. Ashish Jadhav",
+        "right image name": "Mr. Sanjiv Tuli"
+    },
+    {
+        "split the indenties image": "assets/Result/Sanjay_Mohti 2.png",
+        "qleft image": "assets/Mohit Jain.jfif",
+        "right image": "assets/Sanjay Batham.jfif",
+        "left text": "(PMO)",
+        "right text": "(RAFM Intec)",
+        "qleft image name": "Mr. Mohit Jain",
+        "right image name": "Mr. Sanjay Batham"
+    },
+    {
+        "split the indenties image": "assets/Result/Rajeev_Ashok.png",
+        "qleft image": "assets/Ashok Nambian.jfif",
+        "right image": "assets/Rajeev Singhal.jfif",
+        "left text": "(BSS Systems)",
+        "right text": "(Home Journey Team)",
+        "qleft image name": "Mr. Ashok Naembin",
+        "right image name": "Mr. Rajeev Singhal"
+    },
+    {
+        "split the indenties image": "assets/Result/arvind_gautam.jpeg",
+        "qleft image": "assets/Arvind Tiwari.jfif",
+        "right image": "assets/Gautam Kumar.jfif",
+        "left text": "(Media SAAS Platform)",
+        "right text": "(App Dev COE)",
+        "qleft image name": "Mr. Arvind Tiwari",
+        "right image name": "Mr. Gautam Kumar"
+    },
+    {
         "split the indenties image": "assets/Result/Brijesh_BP.jpeg",
         "qleft image": "assets/Brijesh_Datta.jpg",
         "right image": "assets/BP_Singh.jpeg",
