@@ -1,11 +1,11 @@
 [
     {
-        "split the indenties image": "assets/Result/Brijesh_BP.jpeg",
-        "qleft image": "assets/Brijesh_Datta.jpg",
+        "split the indenties image": "assets/Result/Narendra-BP.png",
+        "qleft image": "assets/narender.jfif",
         "right image": "assets/BP_Singh.jpeg",
-        "left text": "(Info Security)",
+        "left text": "(DD&P Connectivity)",
         "right text": "(Tech Ops)",
-        "qleft image name": "Mr. Brijesh Datta",
+        "qleft image name": "Mr. Narender Singh",
         "right image name": "Mr. BP Singh"
     },
     {
@@ -54,12 +54,12 @@
         "right image name": "Mr. Preetham Singh"
     },
     {
-        "split the indenties image": "assets/Result/Narendra-BP.png",
-        "qleft image": "assets/narender.jfif",
+        "split the indenties image": "assets/Result/Brijesh_BP.jpeg",
+        "qleft image": "assets/Brijesh_Datta.jpg",
         "right image": "assets/BP_Singh.jpeg",
-        "left text": "(DD&P Connectivity)",
+        "left text": "(Info Security)",
         "right text": "(Tech Ops)",
-        "qleft image name": "Mr. Narender Singh",
+        "qleft image name": "Mr. Brijesh Datta",
         "right image name": "Mr. BP Singh"
     },
     {

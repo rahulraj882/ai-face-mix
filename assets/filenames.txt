@@ -9,15 +9,6 @@
     },
     {
         "split the indenties image": "assets/Result/top-bottom/AKAS.png",
-        "qleft image": "assets/Akhand_Kumar.png",
-        "right image": "assets/preetham.jpg",
-        "left text": "(HR)",
-        "right text": "(HR)",
-        "qleft image name": "Mr. Akhand Kumar",
-        "right image name": "Mr. Preetham Singh"
-    },
-    {
-        "split the indenties image": "assets/Result/top-bottom/AKAS.png",
         "qleft image": "assets/ashish_jadhav.jfif",
         "right image": "assets/sanjiv_tuli.jfif",
         "left text": "(Enterprise Development)",
