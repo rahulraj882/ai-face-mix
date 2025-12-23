@@ -18,20 +18,11 @@
         "right image name": "Mr. Sameer Mehta"
     },
     {
-        "split the indenties image": "assets/Result/top-bottom/KTAS.png",
-        "qleft image": "assets/Kiran_Thomas.png",
-        "right image": "assets/Anish_Shah.jpeg",
-        "left text": "(JIO)",
-        "right text": "(JIO)",
-        "qleft image name": "Mr. Kiran Thomas",
-        "right image name": "Mr. Anish Shah"
-    },
-    {
         "split the indenties image": "assets/Result/top-bottom/GDMA.png",
         "qleft image": "assets/Gaurav_Duggal.png",
         "right image": "assets/Mohsin_Abbas.png",
         "left text": "(Enterprise)",
-        "right text": "(My Jio)",
+        "right text": "(MyJio)",
         "qleft image name": "Mr. Gaurav Duggal",
         "right image name": "Mr. Mohsin Abbas"
     },
@@ -49,7 +40,7 @@
         "qleft image": "assets/Gaurav_Aggarwal.png",
         "right image": "assets/puneesh.jfif",
         "left text": "(AI Platforms)",
-        "right text": "(HR)",
+        "right text": "(Leadership hiring)",
         "qleft image name": "Mr. Gaurav Aggarwal",
         "right image name": "Mr. Puneesh Kumar"
     },
@@ -61,5 +52,14 @@
         "right text": "(Tech Ops)",
         "qleft image name": "Mr. Narender Singh",
         "right image name": "Mr. BP Singh"
+    },
+    {
+        "split the indenties image": "assets/Result/top-bottom/KTAS.png",
+        "qleft image": "assets/Kiran_Thomas.png",
+        "right image": "assets/Anish_Shah.jpeg",
+        "left text": "(JIO)",
+        "right text": "(JIO)",
+        "qleft image name": "Mr. Kiran Thomas",
+        "right image name": "Mr. Anish Shah"
     }
 ]
