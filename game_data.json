@@ -3,8 +3,6 @@
         "split the indenties image": "assets/Result/Narendra-BP.png",
         "qleft image": "assets/narender.jfif",
         "right image": "assets/BP_Singh.jpeg",
-        "left text": "(DD&P Connectivity)",
-        "right text": "(Tech Ops)",
         "qleft image name": "Mr. Narender Singh",
         "right image name": "Mr. BP Singh"
     },
@@ -12,8 +10,6 @@
         "split the indenties image": "assets/Result/top-bottom/NMSM.png",
         "qleft image": "assets/Nilesh_Mahajan.jpeg",
         "right image": "assets/Sameer_Mehta.jpeg",
-        "left text": "(BOND)",
-        "right text": "(Jio Matrix)",
         "qleft image name": "Mr. Nilesh Mahajan",
         "right image name": "Mr. Sameer Mehta"
     },
@@ -21,8 +17,6 @@
         "split the indenties image": "assets/Result/top-bottom/GDMA.png",
         "qleft image": "assets/Gaurav_Duggal.png",
         "right image": "assets/Mohsin_Abbas.png",
-        "left text": "(Enterprise)",
-        "right text": "(MyJio)",
         "qleft image name": "Mr. Gaurav Duggal",
         "right image name": "Mr. Mohsin Abbas"
     },
@@ -30,8 +24,6 @@
         "split the indenties image": "assets/Result/lavanya+abantika.png",
         "qleft image": "assets/lavanya_menon.jpg",
         "right image": "assets/abantika_borman.jpg",
-        "left text": "(HR)",
-        "right text": "(HR)",
         "qleft image name": "Ms. Lavanya Menon",
         "right image name": "Ms. Abantika Barman"
     },
@@ -39,8 +31,6 @@
         "split the indenties image": "assets/Result/top-bottom/gaurav+puneesh.jpeg",
         "qleft image": "assets/Gaurav_Aggarwal.png",
         "right image": "assets/puneesh.jfif",
-        "left text": "(AI Platforms)",
-        "right text": "(Leadership hiring)",
         "qleft image name": "Mr. Gaurav Aggarwal",
         "right image name": "Mr. Puneesh Kumar"
     },
@@ -48,8 +38,6 @@
         "split the indenties image": "assets/Result/akhand preetham.jpeg",
         "qleft image": "assets/Akhand_Kumar.png",
         "right image": "assets/preetham.jpg",
-        "left text": "(HR)",
-        "right text": "(HR)",
         "qleft image name": "Mr. Akhand Kumar",
         "right image name": "Mr. Preetham Singh"
     },
@@ -57,8 +45,6 @@
         "split the indenties image": "assets/Result/Raghuram_Anil.png",
         "qleft image": "assets/Raghuram_Velega.jpeg",
         "right image": "assets/anil_singh.jfif",
-        "left text": "(Data Platforms)",
-        "right text": "(Data Analytics)",
         "qleft image name": "Mr. Raghuram Velega",
         "right image name": "Mr. Anil Singh"
     },
@@ -66,8 +52,6 @@
         "split the indenties image": "assets/Result/Ashish_Sanjiv.png",
         "qleft image": "assets/ashish_jadhav.jfif",
         "right image": "assets/sanjiv_tuli.jfif",
-        "left text": "(Enterprise Development)",
-        "right text": "(UI/UX)",
         "qleft image name": "Mr. Ashish Jadhav",
         "right image name": "Mr. Sanjiv Tuli"
     },
@@ -75,8 +59,6 @@
         "split the indenties image": "assets/Result/Sanjay_Mohti 2.png",
         "qleft image": "assets/Mohit Jain.jfif",
         "right image": "assets/Sanjay Batham.jfif",
-        "left text": "(PMO)",
-        "right text": "(RAFM Intec)",
         "qleft image name": "Mr. Mohit Jain",
         "right image name": "Mr. Sanjay Batham"
     },
@@ -84,8 +66,6 @@
         "split the indenties image": "assets/Result/Rajeev_Ashok.png",
         "qleft image": "assets/Ashok Nambian.jfif",
         "right image": "assets/Rajeev Singhal.jfif",
-        "left text": "(BSS Systems)",
-        "right text": "(Home Journey Team)",
         "qleft image name": "Mr. Ashok Naembin",
         "right image name": "Mr. Rajeev Singhal"
     },
@@ -93,8 +73,6 @@
         "split the indenties image": "assets/Result/arvind_gautam.jpeg",
         "qleft image": "assets/Arvind Tiwari.jfif",
         "right image": "assets/Gautam Kumar.jfif",
-        "left text": "(Media SAAS Platform)",
-        "right text": "(App Dev COE)",
         "qleft image name": "Mr. Arvind Tiwari",
         "right image name": "Mr. Gautam Kumar"
     },
@@ -102,8 +80,6 @@
         "split the indenties image": "assets/Result/Brijesh_BP.jpeg",
         "qleft image": "assets/Brijesh_Datta.jpg",
         "right image": "assets/BP_Singh.jpeg",
-        "left text": "(Info Security)",
-        "right text": "(Tech Ops)",
         "qleft image name": "Mr. Brijesh Datta",
         "right image name": "Mr. BP Singh"
     },
@@ -111,8 +87,6 @@
         "split the indenties image": "assets/Result/top-bottom/KTAS.png",
         "qleft image": "assets/Kiran_Thomas.png",
         "right image": "assets/Anish_Shah.jpeg",
-        "left text": "(JIO)",
-        "right text": "(JIO)",
         "qleft image name": "Mr. Kiran Thomas",
         "right image name": "Mr. Anish Shah"
     }

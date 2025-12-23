@@ -74,15 +74,13 @@ const clueLeft = document.getElementById('clue-left');
 const clueRight = document.getElementById('clue-right');
 const clueImgLeft = document.getElementById('clue-img-left');
 const clueImgRight = document.getElementById('clue-img-right');
-const clueLabelLeft = document.getElementById('clue-label-left');
-const clueLabelRight = document.getElementById('clue-label-right');
+
 
 
 // Reveal elements
 const revealImgA = document.getElementById('reveal-img-a');
 const revealImgB = document.getElementById('reveal-img-b');
-const revealNameA = document.getElementById('reveal-name-a');
-const revealNameB = document.getElementById('reveal-name-b');
+
 
 
 
@@ -521,8 +519,7 @@ async function startMergePhase(roundData) {
         if (roundData) {
             clueImgLeft.src = roundData["qleft image"];
             clueImgRight.src = roundData["right image"];
-            clueLabelLeft.textContent = roundData["left text"] || "HR";
-            clueLabelRight.textContent = roundData["right text"] || "Enterprise";
+
         }
 
         // 3. Load Image (No 5 second wait anymore)
@@ -568,8 +565,7 @@ async function startMergePhase(roundData) {
             revealImgA.src = roundData["qleft image"];
             revealImgB.src = roundData["right image"];
 
-            revealNameA.textContent = roundData["left text"] || "JIO";
-            revealNameB.textContent = roundData["right text"] || "JIO";
+
 
             const revealOriginA = document.getElementById('reveal-origin-a');
             const revealOriginB = document.getElementById('reveal-origin-b');
@@ -581,8 +577,7 @@ async function startMergePhase(roundData) {
             // Fallback
             revealImgA.src = `assets/img001.jpeg`;
             revealImgB.src = `assets/img002.jpg`;
-            revealNameA.textContent = "JIO";
-            revealNameB.textContent = "JIO";
+
         }
 
     } catch (e) {
