@@ -70,11 +70,18 @@
         "right image name": "Mr. Rajeev Singhal"
     },
     {
-        "split the indenties image": "assets/Result/arvind_gautam.jpeg",
-        "qleft image": "assets/Arvind Tiwari.jfif",
+        "split the indenties image": "assets/Result/Brijesh_Gautam.png",
+        "qleft image": "assets/Brijesh_Datta.jpg",
         "right image": "assets/Gautam Kumar.jfif",
-        "qleft image name": "Mr. Arvind Tiwari",
+        "qleft image name": "Mr. Brijesh Datta",
         "right image name": "Mr. Gautam Kumar"
+    },
+    {
+        "split the indenties image": "assets/Result/Arvind_Nilesh.jfif",
+        "qleft image": "assets/Arvind Tiwari.jfif",
+        "right image": "assets/Nilesh_Mahajan.jpeg",
+        "qleft image name": "Mr. Arvind Tiwari",
+        "right image name": "Mr. Nilesh Mahajan"
     },
     {
         "split the indenties image": "assets/Result/Brijesh_BP.jpeg",
