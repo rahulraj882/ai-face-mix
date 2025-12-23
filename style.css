@@ -491,9 +491,9 @@ body {
     position: relative;
     padding: 1rem 1.5rem;
     color: #fff;
-    font-family: var(--font-code);
-    font-size: 2.5rem;
-    font-weight: 700;
+    font-family: var(--font-head);
+    font-size: 1.5rem;
+    /*font-weight: 700;*/
     border-color: var(--neon-purple);
     box-shadow: 0 0 20px rgba(188, 19, 254, 0.2);
 }
@@ -1043,4 +1043,66 @@ body {
     z-index: 25;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
     /* Simple black rectangle */
+}
+
+/* --- PHASE 5: GAME OVER SCREEN --- */
+#game-over-screen {
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+.game-over-content {
+    text-align: center;
+    animation: fadeIn 2s ease;
+}
+
+.thank-you-msg {
+    font-family: var(--font-head);
+    font-size: 3.5rem;
+    color: #fff;
+    text-shadow: 0 0 20px var(--neon-cyan);
+    margin-bottom: 2rem;
+    letter-spacing: 2px;
+}
+
+.decoration-line {
+    width: 200px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--neon-purple), transparent);
+    margin: 0 auto 3rem auto;
+    opacity: 0.7;
+}
+
+#restart-btn {
+    padding: 1rem 3rem;
+    font-size: 1.5rem;
+}
+
+/* Calm Mode for Backgrounds */
+body.calm-mode .nebula-layer {
+    animation-duration: 60s;
+    /* Slower drift */
+    opacity: 0.3;
+    /* Dimmer */
+}
+
+body.calm-mode .stars-layer {
+    opacity: 0.1;
+}
+
+body.calm-mode .grid-overlay {
+    opacity: 0.2;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
