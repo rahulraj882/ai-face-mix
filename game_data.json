@@ -45,6 +45,15 @@
         "right image name": "Mr. Puneesh Kumar"
     },
     {
+        "split the indenties image": "assets/Result/akhand preetham.jpeg",
+        "qleft image": "assets/Akhand_Kumar.png",
+        "right image": "assets/preetham.jpg",
+        "left text": "(HR)",
+        "right text": "(HR)",
+        "qleft image name": "Mr. Akhand Kumar",
+        "right image name": "Mr. Preetham Singh"
+    },
+    {
         "split the indenties image": "assets/Result/Narendra-BP.png",
         "qleft image": "assets/narender.jfif",
         "right image": "assets/BP_Singh.jpeg",
